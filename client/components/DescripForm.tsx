@@ -1,5 +1,6 @@
 import { useState, FormEvent, ChangeEvent } from 'react'
 import { getDescription } from '../apis/descripAPI'
+import CopyButton from './CopyButton'
 
 const initialFormData = {
   itemName: '',
@@ -94,7 +95,10 @@ function DescripForm() {
         <button>Generate Description</button>
       </form>
 
-      <div className="descrip-container">{description}</div>
+      <div className="descrip-container">
+        {description}
+        <CopyButton text={description} />
+      </div>
     </>
   )
 }
