@@ -1,20 +1,55 @@
 import { useState, FormEvent, ChangeEvent } from 'react'
 
+const initialFormData = {
+  itemName: '',
+  brand: '',
+  category: '',
+  condition: '',
+  location: '',
+}
+
 function DescripForm() {
+  const [form, setForm] = useState(initialFormData)
+
+  const [description, setDescription] = useState('')
+
+  function handleChange(event: ChangeEvent<HTMLInputElement>) {
+    const { name, value } = event.target
+    const newForm = { ...form, [name]: value }
+    setForm(newForm)
+  }
+
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    console.log(form)
+    // const newDescip = await api.getDescription(form)
+    // setDescription(newDescrip)
+    // setForm(initialFormData)
+  }
+
   return (
     <>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="form-wrapper">
           <label htmlFor="itemName">Item Name:</label>
-          <input type="text" id="itemName" name="itemName" />
+          <input
+            type="text"
+            id="itemName"
+            name="itemName"
+            onChange={handleChange}
+          />
 
           <label htmlFor="brand">Brand:</label>
-          <input type="text" id="brand" name="brand" />
+          <input type="text" id="brand" name="brand" onChange={handleChange} />
         </div>
 
         <div className="form-wrapper">
           <label htmlFor="category">Category:</label>
-          <select name="category" id="category">
+          <select name="category" id="category" onChange={handleChange}>
+            <option key="" value="">
+              --Select a category--
+            </option>
             <option key="Baby Gear" value="Baby Gear">
               Baby Gear
             </option>
@@ -30,7 +65,7 @@ function DescripForm() {
           </select>
 
           <label htmlFor="condition">Condition:</label>
-          <select name="condition" id="condition">
+          <select name="condition" id="condition" onChange={handleChange}>
             <option key="new" value="new">
               New
             </option>
@@ -48,13 +83,18 @@ function DescripForm() {
 
         <div className="form-wrapper">
           <label htmlFor="location">Pick up from:</label>
-          <input type="text" id="location" name="location" />
+          <input
+            type="text"
+            id="location"
+            name="location"
+            onChange={handleChange}
+          />
         </div>
 
         <button>Generate Description</button>
       </form>
 
-      <div className="descrip-container"></div>
+      <div className="descrip-container">{description}</div>
     </>
   )
 }
