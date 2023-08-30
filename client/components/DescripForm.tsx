@@ -95,10 +95,13 @@ function DescripForm() {
         <button>Generate Description</button>
       </form>
 
-      <div className="descrip-container">
-        {description}
-        <CopyButton text={description} />
-      </div>
+      <textarea
+        id="text"
+        name="text"
+        className="descrip-container"
+        defaultValue={description}
+      ></textarea>
+      <CopyButton text={description} />
     </>
   )
 }
