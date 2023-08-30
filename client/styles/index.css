@@ -6,3 +6,15 @@ body {
   padding: 20px;
   font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
+
+.form-wrapper,
+button {
+  margin-top: 20px;
+}
+
+.descrip-container {
+  margin-top: 20px;
+  height: 200px;
+  border: solid 2px grey;
+  border-radius: 10px;
+}
