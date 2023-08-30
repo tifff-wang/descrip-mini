@@ -1,4 +1,5 @@
 import { useState, FormEvent, ChangeEvent } from 'react'
+import { getDescription } from '../apis/descripAPI'
 
 const initialFormData = {
   itemName: '',
@@ -19,13 +20,12 @@ function DescripForm() {
     setForm(newForm)
   }
 
-
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    console.log(form)
-    // const newDescip = await api.getDescription(form)
-    // setDescription(newDescrip)
-    // setForm(initialFormData)
+    const newDescrip = await getDescription(form)
+    console.log(newDescrip)
+    setDescription(newDescrip.content)
+    setForm(initialFormData)
   }
 
   return (
