@@ -5,3 +5,8 @@ export interface Keywords {
   condition: string
   location: string
 }
+
+export interface Message {
+  role: string
+  content: string
+}

@@ -2,6 +2,7 @@ import * as Path from 'node:path'
 
 import express from 'express'
 
+import description from '../server/routes/description'
 
 const server = express()
 server.use(express.json())
@@ -14,4 +15,5 @@ if (process.env.NODE_ENV === 'production') {
   })
 }
 
+server.use('/api/v1/description', description)
 export default server
