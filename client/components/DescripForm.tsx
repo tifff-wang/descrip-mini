@@ -44,7 +44,7 @@ function DescripForm() {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="text-start mt-11">
         <div className="form-wrapper">
           <label htmlFor="itemName">Item Name:</label>
           <input
@@ -53,6 +53,7 @@ function DescripForm() {
             name="itemName"
             value={form.itemName}
             onChange={handleChange}
+            className="border-2 rounded-full border-[#9CA7B2] h-8 w-48 shadow-sm"
           />
 
           <label htmlFor="brand">Brand:</label>
@@ -62,6 +63,7 @@ function DescripForm() {
             name="brand"
             value={form.brand}
             onChange={handleChange}
+            className="border-2 rounded-full border-[#9CA7B2] h-8 w-48 shadow-sm"
           />
         </div>
 
@@ -72,6 +74,7 @@ function DescripForm() {
             id="category"
             value={form.category}
             onChange={handleChange}
+            className="border-2 rounded-full border-[#EAEAEA] h-8 w-48 shadow-sm"
           >
             <option key="" value="">
               --Select a category--
@@ -96,6 +99,7 @@ function DescripForm() {
             id="condition"
             value={form.condition}
             onChange={handleChange}
+            className="border-2 rounded-full border-[#EAEAEA] h-8 w-48 shadow-sm"
           >
             <option key="new" value="new">
               New
@@ -121,6 +125,7 @@ function DescripForm() {
             value={form.location}
             onChange={handleChange}
             placeholder="Suburb, City"
+            className="border-2 rounded-full border-[#EAEAEA] h-8 w-48 shadow-sm"
           />
         </div>
 
