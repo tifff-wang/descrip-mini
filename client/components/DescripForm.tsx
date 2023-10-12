@@ -1,4 +1,4 @@
-import { useState, FormEvent, ChangeEvent } from 'react'
+import { useState, FormEvent, ChangeEvent, MouseEventHandler } from 'react'
 import { getDescription } from '../apis/descripAPI'
 import CopyButton from './CopyButton'
 
@@ -11,9 +11,9 @@ const initialFormData = {
 }
 
 function DescripForm() {
-  const [form, setForm] = useState(initialFormData)
-
   const [description, setDescription] = useState('')
+  const [form, setForm] = useState(initialFormData)
+  const [isLoading, setIsLoading] = useState(false)
 
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target
@@ -23,11 +23,24 @@ function DescripForm() {
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    const newDescrip = await getDescription(form)
-    console.log(newDescrip)
-    setDescription(newDescrip.content)
+    try {
+      setIsLoading(true)
+      const newDescrip = await getDescription(form)
+      setDescription(newDescrip.content)
+    } catch (err) {
+      console.error(err.message)
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  function reset(event: MouseEventHandler<HTMLButtonElement>) {
+    event.preventDefault()
+    setDescription('')
     setForm(initialFormData)
   }
+
+  const loadingView = isLoading ? <p>Generating description...</p> : null
 
   return (
     <>
@@ -38,16 +51,28 @@ function DescripForm() {
             type="text"
             id="itemName"
             name="itemName"
+            value={form.itemName}
             onChange={handleChange}
           />
 
           <label htmlFor="brand">Brand:</label>
-          <input type="text" id="brand" name="brand" onChange={handleChange} />
+          <input
+            type="text"
+            id="brand"
+            name="brand"
+            value={form.brand}
+            onChange={handleChange}
+          />
         </div>
 
         <div className="form-wrapper">
           <label htmlFor="category">Category:</label>
-          <select name="category" id="category" onChange={handleChange}>
+          <select
+            name="category"
+            id="category"
+            value={form.category}
+            onChange={handleChange}
+          >
             <option key="" value="">
               --Select a category--
             </option>
@@ -66,7 +91,12 @@ function DescripForm() {
           </select>
 
           <label htmlFor="condition">Condition:</label>
-          <select name="condition" id="condition" onChange={handleChange}>
+          <select
+            name="condition"
+            id="condition"
+            value={form.condition}
+            onChange={handleChange}
+          >
             <option key="new" value="new">
               New
             </option>
@@ -88,12 +118,16 @@ function DescripForm() {
             type="text"
             id="location"
             name="location"
+            value={form.location}
             onChange={handleChange}
+            placeholder="Suburb, City"
           />
         </div>
 
         <button>Generate Description</button>
+        <button onClick={reset}>Reset</button>
       </form>
+      <div>{loadingView}</div>
 
       <textarea
         id="text"

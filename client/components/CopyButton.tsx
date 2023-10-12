@@ -13,7 +13,7 @@ function CopyButton(props: Props) {
         setButtonText('copied')
         setTimeout(function () {
           setButtonText('copy to clipboard')
-        }, 3000)
+        }, 1000)
       })
       .catch((err) => {
         console.log(err.message)
