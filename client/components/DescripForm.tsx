@@ -44,80 +44,98 @@ function DescripForm() {
 
   return (
     <>
-      <form onSubmit={handleSubmit} className="text-start mt-11">
-        <div className="form-wrapper">
-          <label htmlFor="itemName">Item Name:</label>
-          <input
-            type="text"
-            id="itemName"
-            name="itemName"
-            value={form.itemName}
-            onChange={handleChange}
-            className="border-2 rounded-full border-[#9CA7B2] h-8 w-48 shadow-sm"
-          />
+      <form onSubmit={handleSubmit} className="text-start mt-11 mx-8">
+        <div className="flex grid-cols-2 gap-6">
+          <div>
+            <label htmlFor="itemName" className="block text-sm">
+              Item Name:
+            </label>
+            <input
+              type="text"
+              id="itemName"
+              name="itemName"
+              value={form.itemName}
+              onChange={handleChange}
+              className="border-2 rounded-full border-[#9CA7B2] h-8 w-48 shadow-sm pl-3 text-[#4B4B4B] text-sm"
+            />
+          </div>
 
-          <label htmlFor="brand">Brand:</label>
-          <input
-            type="text"
-            id="brand"
-            name="brand"
-            value={form.brand}
-            onChange={handleChange}
-            className="border-2 rounded-full border-[#9CA7B2] h-8 w-48 shadow-sm"
-          />
+          <div>
+            <label htmlFor="brand" className="block text-sm">
+              Brand:
+            </label>
+            <input
+              type="text"
+              id="brand"
+              name="brand"
+              value={form.brand}
+              onChange={handleChange}
+              className="border-2 rounded-full border-[#9CA7B2] h-8 w-48 shadow-sm pl-3 text-[#4B4B4B] text-sm"
+            />
+          </div>
         </div>
 
-        <div className="form-wrapper">
-          <label htmlFor="category">Category:</label>
-          <select
-            name="category"
-            id="category"
-            value={form.category}
-            onChange={handleChange}
-            className="border-2 rounded-full border-[#EAEAEA] h-8 w-48 shadow-sm"
-          >
-            <option key="" value="">
-              --Select a category--
-            </option>
-            <option key="Baby Gear" value="Baby Gear">
-              Baby Gear
-            </option>
-            <option key="Home&Living" value="Home&Living">
-              Home&Living
-            </option>
-            <option key="Computers" value="Computers">
-              Computers
-            </option>
-            <option key="Clothes&Fashion" value="Clothes&Fashion">
-              Clothes&Fashion
-            </option>
-          </select>
+        <div className="flex grid-cols-2 gap-6 mt-3">
+          <div>
+            <label htmlFor="category" className="block text-sm">
+              Category:
+            </label>
+            <select
+              name="category"
+              id="category"
+              value={form.category}
+              onChange={handleChange}
+              className="border-2 rounded-full border-[#EAEAEA] h-8 w-48 shadow-sm pl-3 text-[#4B4B4B] text-sm"
+            >
+              <option key="" value="">
+                --Select a category--
+              </option>
+              <option key="Baby Gear" value="Baby Gear">
+                Baby Gear
+              </option>
+              <option key="Home&Living" value="Home&Living">
+                Home&Living
+              </option>
+              <option key="Computers" value="Computers">
+                Computers
+              </option>
+              <option key="Clothes&Fashion" value="Clothes&Fashion">
+                Clothes&Fashion
+              </option>
+            </select>
+          </div>
 
-          <label htmlFor="condition">Condition:</label>
-          <select
-            name="condition"
-            id="condition"
-            value={form.condition}
-            onChange={handleChange}
-            className="border-2 rounded-full border-[#EAEAEA] h-8 w-48 shadow-sm"
-          >
-            <option key="new" value="new">
-              New
-            </option>
-            <option key="likeNew" value="like new">
-              Like new
-            </option>
-            <option key="good" value="good">
-              Good
-            </option>
-            <option key="fair" value="fair">
-              Fair
-            </option>
-          </select>
+          <div>
+            <label htmlFor="condition" className="block text-sm">
+              Condition:
+            </label>
+            <select
+              name="condition"
+              id="condition"
+              value={form.condition}
+              onChange={handleChange}
+              className="border-2 rounded-full border-[#EAEAEA] h-8 w-48 shadow-sm pl-3 text-[#4B4B4B] text-sm"
+            >
+              <option key="new" value="new">
+                New
+              </option>
+              <option key="likeNew" value="like new">
+                Like new
+              </option>
+              <option key="good" value="good">
+                Good
+              </option>
+              <option key="fair" value="fair">
+                Fair
+              </option>
+            </select>
+          </div>
         </div>
 
-        <div className="form-wrapper">
-          <label htmlFor="location">Pick up from:</label>
+        <div className="mt-3">
+          <label htmlFor="location" className="block text-sm">
+            Pick up from:
+          </label>
           <input
             type="text"
             id="location"
@@ -125,19 +143,25 @@ function DescripForm() {
             value={form.location}
             onChange={handleChange}
             placeholder="Suburb, City"
-            className="border-2 rounded-full border-[#EAEAEA] h-8 w-48 shadow-sm"
+            className="border-2 rounded-full border-[#EAEAEA] h-8 w-48 shadow-sm pl-3 text-[#4B4B4B] text-sm"
           />
         </div>
 
-        <button>Generate Description</button>
-        <button onClick={reset}>Reset</button>
+        <div id="button-wrapper" className="flex justify-center mt-6">
+          <button className="rounded-full bg-[#8DA1E1] px-4 py-2 text-white text-lg">
+            Generate Description
+          </button>
+          <button onClick={reset} className="ml-6 underline">
+            Reset
+          </button>
+        </div>
       </form>
       <div>{loadingView}</div>
 
       <textarea
         id="text"
         name="text"
-        className="descrip-container"
+        className="border-2 rounded-md shadow-md border-[#9CA7B2] px-5 py-5 mt-6 w-5/6 h-48 "
         defaultValue={description}
       ></textarea>
       <CopyButton text={description} />
