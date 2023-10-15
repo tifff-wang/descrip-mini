@@ -148,7 +148,7 @@ function DescripForm() {
         </div>
 
         <div id="button-wrapper" className="flex justify-center mt-6">
-          <button className="rounded-full bg-[#8DA1E1] px-4 py-2 text-white text-lg">
+          <button className="rounded-full bg-[#8DA1E1] px-4 py-2 text-white text-md">
             Generate Description
           </button>
           <button onClick={reset} className="ml-6 underline">
@@ -158,13 +158,15 @@ function DescripForm() {
       </form>
       <div>{loadingView}</div>
 
-      <textarea
-        id="text"
-        name="text"
-        className="border-2 rounded-md shadow-md border-[#9CA7B2] px-5 py-5 mt-6 w-5/6 h-48 "
-        defaultValue={description}
-      ></textarea>
-      <CopyButton text={description} />
+      <div className="relative">
+        <textarea
+          id="text"
+          name="text"
+          className="border-2 rounded-md shadow-md border-[#9CA7B2] px-5 py-5 mt-6 w-5/6 h-48 text-sm leading-4"
+          defaultValue={description}
+        ></textarea>
+        <CopyButton text={description} />
+      </div>
     </>
   )
 }
