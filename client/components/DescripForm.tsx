@@ -40,7 +40,9 @@ function DescripForm() {
     setForm(initialFormData)
   }
 
-  const loadingView = isLoading ? <p>Generating description...</p> : null
+  const loadingView = isLoading ? (
+    <p className="mt-4 text-xs">Generating description...</p>
+  ) : null
 
   return (
     <>

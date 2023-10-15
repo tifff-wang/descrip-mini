@@ -5,7 +5,7 @@ function App() {
     <div>
       <div
         id="form-wrapper"
-        className="inline-block bg-white pt-24 w-100 h-screen"
+        className="inline-block bg-white pt-16 w-100 h-screen"
       >
         <h1 className="font-80px text-[#8DA1E1] ">
           Descrip
