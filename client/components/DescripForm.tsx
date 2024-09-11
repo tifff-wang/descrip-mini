@@ -15,7 +15,15 @@ function DescripForm() {
   const [form, setForm] = useState(initialFormData)
   const [isLoading, setIsLoading] = useState(false)
 
-  function handleChange(event: ChangeEvent<HTMLInputElement>) {
+  const { itemName, brand, category, condition, location } = form
+
+  function handleInputChange(event: ChangeEvent<HTMLInputElement>) {
+    const { name, value } = event.target
+    const newForm = { ...form, [name]: value }
+    setForm(newForm)
+  }
+
+  function handleSelectChange(event: ChangeEvent<HTMLSelectElement>) {
     const { name, value } = event.target
     const newForm = { ...form, [name]: value }
     setForm(newForm)
@@ -28,13 +36,15 @@ function DescripForm() {
       const newDescrip = await getDescription(form)
       setDescription(newDescrip.content)
     } catch (err) {
-      console.error(err.message)
+      const message = (err as Error).message
+      console.error(message)
+      alert('Failed to generate description. Error: ' + message)
     } finally {
       setIsLoading(false)
     }
   }
 
-  function reset(event: MouseEventHandler<HTMLButtonElement>) {
+  function reset(event: React.MouseEvent<HTMLButtonElement>) {
     event.preventDefault()
     setDescription('')
     setForm(initialFormData)
@@ -56,8 +66,8 @@ function DescripForm() {
               type="text"
               id="itemName"
               name="itemName"
-              value={form.itemName}
-              onChange={handleChange}
+              value={itemName}
+              onChange={handleInputChange}
               className="border-2 rounded-full border-[#9CA7B2] h-8 w-48 shadow-sm pl-3 text-[#4B4B4B] text-sm"
             />
           </div>
@@ -70,8 +80,8 @@ function DescripForm() {
               type="text"
               id="brand"
               name="brand"
-              value={form.brand}
-              onChange={handleChange}
+              value={brand}
+              onChange={handleInputChange}
               className="border-2 rounded-full border-[#9CA7B2] h-8 w-48 shadow-sm pl-3 text-[#4B4B4B] text-sm"
             />
           </div>
@@ -85,8 +95,8 @@ function DescripForm() {
             <select
               name="category"
               id="category"
-              value={form.category}
-              onChange={handleChange}
+              value={category}
+              onChange={handleSelectChange}
               className="border-2 rounded-full border-[#EAEAEA] h-8 w-48 shadow-sm pl-3 text-[#4B4B4B] text-sm"
             >
               <option key="" value="">
@@ -114,8 +124,8 @@ function DescripForm() {
             <select
               name="condition"
               id="condition"
-              value={form.condition}
-              onChange={handleChange}
+              value={condition}
+              onChange={handleSelectChange}
               className="border-2 rounded-full border-[#EAEAEA] h-8 w-48 shadow-sm pl-3 text-[#4B4B4B] text-sm"
             >
               <option key="new" value="new">
@@ -142,8 +152,8 @@ function DescripForm() {
             type="text"
             id="location"
             name="location"
-            value={form.location}
-            onChange={handleChange}
+            value={location}
+            onChange={handleInputChange}
             placeholder="Suburb, City"
             className="border-2 rounded-full border-[#EAEAEA] h-8 w-48 shadow-sm pl-3 text-[#4B4B4B] text-sm"
           />
