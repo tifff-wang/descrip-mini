@@ -8,11 +8,9 @@ form inputs when they want to create second-hand selling listings.
 
 <img src="public/images/descripmini.gif" alt="app demo" width="500px">
 
-## Tools Used
+## Technologies
 
-- React
-- OpenAi API
-- TailwindCSS
+![](https://img.shields.io/badge/React-Green) ![](https://img.shields.io/badge/OpenAI_API-blue) ![](https://img.shields.io/badge/TailwindCSS-orange)
 
 ## What's next?
 
